@@ -20,7 +20,7 @@ defmodule Conduit.MixProject do
   def application do
     [
       mod: {Conduit.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :eventstore]
     ]
   end
 
@@ -50,7 +50,8 @@ defmodule Conduit.MixProject do
       {:uuid, "~> 1.1"},
       {:exconstructor, "~> 1.1"},
       {:poison, "~> 3.1"},
-      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false}
+      {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
+      {:commanded_ecto_projections, "~> 1.2"}
     ]
   end
 

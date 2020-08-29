@@ -7,16 +7,18 @@ defmodule Conduit.Application do
 
   def start(_type, _args) do
     children = [
+      # Commanded application
+      Conduit.App,
       # Start the Ecto repository
       Conduit.Repo,
-      # Start the Eventstore repository
-      Conduit.EventStore,
       # Start the Telemetry supervisor
       ConduitWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Conduit.PubSub},
       # Start the Endpoint (http/https)
-      ConduitWeb.Endpoint
+      ConduitWeb.Endpoint,
+      # Accounts supervisor
+      Conduit.Accounts.Supervisor
       # Start a worker by calling: Conduit.Worker.start_link(arg)
       # {Conduit.Worker, arg}
     ]

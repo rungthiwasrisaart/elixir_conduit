@@ -8,11 +8,22 @@
 use Mix.Config
 
 config :conduit,
-  ecto_repos: [Conduit.Repo]
-
-config :conduit,
+  ecto_repos: [Conduit.Repo],
   event_stores: [Conduit.EventStore]
 
+config :conduit, Conduit.App,
+  event_store: [
+    adapter: Commanded.EventStore.Adapters.EventStore,
+    event_store: Conduit.EventStore
+  ],
+  pub_sub: :local,
+  registry: :local
+
+config :commanded,
+  event_store_adapter: Commanded.EventStore.Adapters.EventStore
+
+config :commanded_ecto_projections,
+  repo: Conduit.Repo
 
 # Configures the endpoint
 config :conduit, ConduitWeb.Endpoint,

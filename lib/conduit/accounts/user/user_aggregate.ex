@@ -14,6 +14,7 @@ defmodule Conduit.Accounts.Aggregates.User do
   Register a new user
   """
   def execute(%User{uuid: nil}, %RegisterUser{} = register) do
+    "execute" |> IO.inspect()
     %UserRegistered{
       user_uuid: register.user_uuid,
       username: register.username,
@@ -25,6 +26,7 @@ defmodule Conduit.Accounts.Aggregates.User do
   # state mutators
 
   def apply(%User{} = user, %UserRegistered{} = registered) do
+    "apply" |> IO.inspect()
     %User{
       user
       | uuid: registered.user_uuid,
