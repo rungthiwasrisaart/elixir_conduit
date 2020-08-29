@@ -13,11 +13,6 @@ config :conduit,
 config :conduit,
   event_stores: [Conduit.EventStore]
 
-# Using EventStore the jsonb data type
-config :conduit, Conduit.EventStore,
-  column_data_type: "jsonb",
-  serializer: EventStore.JsonbSerializer,
-  types: EventStore.PostgresTypes
 
 # Configures the endpoint
 config :conduit, ConduitWeb.Endpoint,
