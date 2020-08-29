@@ -3,8 +3,18 @@ use Mix.Config
 # Configure your database
 config :conduit, Conduit.Repo,
   username: "postgres",
-  password: "postgres",
-  database: "conduit_dev",
+  password: "mysecretpassword",
+  database: "conduit_readstore_dev",
+  hostname: "localhost",
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
+# Configure your eventstore
+config :conduit, Conduit.EventStore,
+  serializer: EventStore.JsonSerializer,
+  username: "postgres",
+  password: "mysecretpassword",
+  database: "conduit_eventstore_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
