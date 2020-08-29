@@ -3,10 +3,10 @@ defmodule ConduitWeb.UserControllerTest do
 
   import Conduit.Factory
 
-  alias Conduit.Accounts
+  alias Conduit.Accounts.Commands.RegisterUser
 
   def fixture(:user, attrs \\ []) do
-    build(:user, attrs) |> Accounts.create_user()
+    build(:user, attrs) |> struct(RegisterUser)
   end
 
   setup %{conn: conn} do

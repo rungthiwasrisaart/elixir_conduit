@@ -3,11 +3,11 @@ defmodule Conduit.Accounts.Projections.User do
   import Ecto.Changeset
 
   schema "accounts_users" do
-    field :bio, :string
-    field :email, :string
+    field :username, :string, unique: true
+    field :email, :string, unique: true
     field :hashed_password, :string
+    field :bio, :string
     field :image, :string
-    field :username, :string
 
     timestamps()
   end

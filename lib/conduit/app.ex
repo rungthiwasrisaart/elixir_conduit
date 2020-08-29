@@ -6,5 +6,5 @@ defmodule Conduit.App do
       event_store: Conduit.EventStore
     ]
 
-  # router(Conduit.Router)
+  router(Conduit.Router)
 end
