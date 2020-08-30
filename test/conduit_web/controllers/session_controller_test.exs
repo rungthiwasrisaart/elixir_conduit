@@ -1,7 +1,7 @@
 defmodule ConduitWeb.SessionControllerTest do
   use ConduitWeb.ConnCase
 
-  import Conduit.Factory
+  import Conduit.Fixture
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}

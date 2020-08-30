@@ -17,4 +17,15 @@ defmodule Conduit.Factory do
   def register_user_factory do
     struct(RegisterUser, build(:user))
   end
+
+  def article_factory do
+    %{
+      slug: "how-to-train-your-dragon",
+      title: "How to train your dragon",
+      description: "Ever wonder how?",
+      body: "You have to believe",
+      tag_list: ["dragons", "training"],
+      author_uuid: UUID.uuid4()
+    }
+  end
 end

@@ -2,6 +2,7 @@ defmodule ConduitWeb.UserControllerTest do
   use ConduitWeb.ConnCase
 
   import Conduit.Factory
+  import ConduitWeb.ConnHelpers
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -60,14 +61,6 @@ defmodule ConduitWeb.UserControllerTest do
       conn = get(conn, Routes.user_path(conn, :current))
 
       assert response(conn, 401) == ""
-    end
-  end
-
-  def authenticated_conn(conn) do
-    with {:ok, user} <- fixture(:user),
-         {:ok, jwt} <- ConduitWeb.JWT.generate_jwt(user) do
-      conn
-      |> put_req_header("authorization", "Token " <> jwt)
     end
   end
 end
