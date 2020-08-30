@@ -12,10 +12,11 @@ defmodule ConduitWeb.UserController do
   # end
 
   def create(conn, %{"user" => user_params}) do
-    with {:ok, %User{} = user} <- Accounts.register_user(user_params) do
+    with {:ok, %User{} = user} <- Accounts.register_user(user_params),
+         {:ok, jwt} <- generate_jwt(user) do
       conn
       |> put_status(:created)
-      |> render("show.json", user: user)
+      |> render("show.json", user: user, jwt: jwt)
     end
   end
 
