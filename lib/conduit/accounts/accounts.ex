@@ -17,8 +17,9 @@ defmodule Conduit.Accounts do
 
     register_user =
       attrs
-      |> assign(:user_uuid, uuid)
       |> RegisterUser.new()
+      |> RegisterUser.assign_uuid(uuid)
+      |> RegisterUser.downcase_username()
 
     with :ok <- App.dispatch(register_user, consistency: :strong) do
       get(User, uuid)
