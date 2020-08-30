@@ -6,12 +6,12 @@ defmodule ConduitWeb.FallbackController do
   """
   use ConduitWeb, :controller
 
-  # This clause handles errors returned by Ecto's insert/update/delete.
-  def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
+  # This clause handles errors returned by validation in commanded.
+  def call(conn, {:error, :validation_failure, errors}) do
     conn
     |> put_status(:unprocessable_entity)
-    |> put_view(ConduitWeb.ChangesetView)
-    |> render("error.json", changeset: changeset)
+    |> put_view(ConduitWeb.ValidationView)
+    |> render("error.json", errors: errors)
   end
 
   # This clause is an example of how to handle resources that cannot be found.
