@@ -52,7 +52,9 @@ defmodule Conduit.MixProject do
       {:poison, "~> 3.1"},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:commanded_ecto_projections, "~> 1.2"},
-      {:vex, "~> 0.8"}
+      {:vex, "~> 0.8"},
+      {:bcrypt_elixir, "~> 2.0"},
+      {:comeonin, "~> 5.0"}
     ]
   end
 

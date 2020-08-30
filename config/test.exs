@@ -29,3 +29,8 @@ config :conduit, ConduitWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+# Optional: during tests (and tests only),
+# you may want to reduce the number of rounds so it does not slow down your test suite.
+config :bcrypt_elixir, :log_rounds, 4
+config :comeonin, :bcrypt_log_rounds, 4
