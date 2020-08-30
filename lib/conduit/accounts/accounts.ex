@@ -5,6 +5,7 @@ defmodule Conduit.Accounts do
 
   alias Conduit.Accounts.Commands.RegisterUser
   alias Conduit.Accounts.Projections.User
+  alias Conduit.Accounts.Queries.UserByUsername
   alias Conduit.Repo
   alias Conduit.App
 
@@ -31,6 +32,16 @@ defmodule Conduit.Accounts do
       nil -> {:error, :not_found}
       projection -> {:ok, projection}
     end
+  end
+
+  @doc """
+  Get an existing user by their username, or return `nil` if not registered
+  """
+  def user_by_username(username) do
+    username
+    |> String.downcase()
+    |> UserByUsername.new()
+    |> Repo.one()
   end
 
   # generate a unique identity
