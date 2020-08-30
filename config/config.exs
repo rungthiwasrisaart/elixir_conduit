@@ -29,6 +29,7 @@ config :vex,
   sources: [
     Conduit.Accounts.Validators,
     Conduit.Support.Validators,
+    Conduit.Blog.Validators,
     Vex.Validators
   ]
 

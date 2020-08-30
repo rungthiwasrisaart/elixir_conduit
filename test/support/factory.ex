@@ -2,6 +2,7 @@ defmodule Conduit.Factory do
   use ExMachina
 
   alias Conduit.Accounts.Commands.RegisterUser
+  alias Conduit.Blog.Commands.PublishArticle
 
   def user_factory do
     %{
@@ -27,5 +28,18 @@ defmodule Conduit.Factory do
       tag_list: ["dragons", "training"],
       author_uuid: UUID.uuid4()
     }
+  end
+
+  def author_factory do
+    %{
+      user_uuid: UUID.uuid4(),
+      username: "jake",
+      bio: "I like to skateboard",
+      image: "https://i.stack.imgur.com/xHWG8.jpg"
+    }
+  end
+
+  def publish_article_factory do
+    struct(PublishArticle, build(:article))
   end
 end
