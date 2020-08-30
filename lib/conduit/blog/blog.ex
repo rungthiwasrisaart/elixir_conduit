@@ -11,6 +11,23 @@ defmodule Conduit.Blog do
   alias Conduit.{Repo, App}
 
   @doc """
+  Get the author for a given uuid.
+  """
+  def get_author!(uuid) do
+    Repo.get!(Author, uuid)
+  end
+
+  @doc """
+  Get an article by its URL slug, or return `nil` if not found.
+  """
+  def article_by_slug(slug) do
+    slug
+    |> String.downcase()
+    |> ArticleBySlug.new()
+    |> Repo.one()
+  end
+
+  @doc """
   Create an author.
   An author shares the same uuid as the user, but with a different prefix.
   """
@@ -45,16 +62,6 @@ defmodule Conduit.Blog do
     else
       reply -> reply
     end
-  end
-
-  @doc """
-  Get an article by its URL slug, or return `nil` if not found.
-  """
-  def article_by_slug(slug) do
-    slug
-    |> String.downcase()
-    |> ArticleBySlug.new()
-    |> Repo.one()
   end
 
   defp get(schema, uuid) do
