@@ -40,6 +40,15 @@ config :conduit, ConduitWeb.Endpoint,
   pubsub_server: Conduit.PubSub,
   live_view: [signing_salt: "oEjr6kvP"]
 
+config :conduit, Conduit.Auth.Guardian,
+  allowed_algos: ["HS512"],
+  verify_module: Guardian.JWT,
+  issuer: "Conduit",
+  ttl: {30, :days},
+  allowed_drift: 2000,
+  verify_issuer: true,
+  secret_key: "KOVS/ciHUqw4ViRltIa0Q2ggOO8WF1jYzRHoGWh2vS2VlTdx4RHuNTCkVXYqlRd4"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
