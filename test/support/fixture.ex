@@ -12,4 +12,10 @@ defmodule Conduit.Fixture do
   def fixture(:author, attrs) do
     build(:author, attrs) |> Blog.create_author()
   end
+
+  def fixture(:article, attrs) do
+    {author, attrs} = Keyword.pop(attrs, :author)
+
+    Blog.publish_article(author, build(:article, attrs))
+  end
 end

@@ -4,6 +4,8 @@ defmodule Conduit.BlogTest do
   alias Conduit.Blog
   alias Conduit.Blog.Projections.Article
 
+  import Conduit.Fixture
+
   describe "publish article" do
     setup [
       :create_author
@@ -33,9 +35,47 @@ defmodule Conduit.BlogTest do
     end
   end
 
+  describe "list articles" do
+    setup [
+      :create_author,
+      :publish_articles
+    ]
+
+    @tag :integration
+    test "should list articles by published date", %{articles: [article1, article2]} do
+      assert {[article2, article1], 2} == Blog.list_articles()
+    end
+
+    @tag :integration
+    test "should limit articles", %{articles: [_article1, article2]} do
+      assert {[article2], 2} == Blog.list_articles(%{limit: 1})
+    end
+
+    @tag :integration
+    test "should paginate articles", %{articles: [article1, _article2]} do
+      assert {[article1], 2} == Blog.list_articles(%{offset: 1})
+    end
+  end
+
   defp create_author(_context) do
     {:ok, author} = fixture(:author)
 
     [author: author]
+  end
+
+  defp publish_articles(%{author: author}) do
+    {:ok, article1} = fixture(:article, author: author)
+
+    {:ok, article2} =
+      fixture(:article,
+        author: author,
+        title: "How to train your dragon 2",
+        description: "So toothless",
+        body: "It a dragon"
+      )
+
+    [
+      articles: [article1, article2]
+    ]
   end
 end
