@@ -18,7 +18,9 @@ defmodule Conduit.Application do
       # Start the Endpoint (http/https)
       ConduitWeb.Endpoint,
       # Accounts supervisor
-      Conduit.Accounts.Supervisor
+      Conduit.Accounts.Supervisor,
+      # Enforce unique constraints
+      Conduit.Support.Unique
       # Start a worker by calling: Conduit.Worker.start_link(arg)
       # {Conduit.Worker, arg}
     ]
