@@ -51,7 +51,8 @@ defmodule Conduit.MixProject do
       {:exconstructor, "~> 1.1"},
       {:poison, "~> 3.1"},
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
-      {:commanded_ecto_projections, "~> 1.2"}
+      {:commanded_ecto_projections, "~> 1.2"},
+      {:vex, "~> 0.8"}
     ]
   end
 
